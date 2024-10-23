@@ -6,12 +6,13 @@ def find_cdrs(structure):
     cdrs = []
     if structure['heavy'] is not None:
         flag = structure['heavy']['cdr_flag']
+        if int(constants.CDR.H3) in flag:
+            cdrs.append('H_CDR3')
         if int(constants.CDR.H1) in flag:
             cdrs.append('H_CDR1')
         if int(constants.CDR.H2) in flag:
             cdrs.append('H_CDR2')
-        if int(constants.CDR.H3) in flag:
-            cdrs.append('H_CDR3')
+
 
     if structure['light'] is not None:
         flag = structure['light']['cdr_flag']

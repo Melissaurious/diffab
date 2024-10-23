@@ -58,6 +58,12 @@ class PaddingCollate(object):
         return self.pad_values[key]
 
     def __call__(self, data_list):
+        data_list = [data for data in data_list if data is not None] # ADDED;  Filter out None values
+
+        # If all data points were None, return None to indicate an empty batch
+        if len(data_list) == 0:
+            return None
+
         max_length = max([data[self.length_ref_key].size(0) for data in data_list])
         keys = self._get_common_keys(data_list)
         

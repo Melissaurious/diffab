@@ -1,7 +1,7 @@
 from torch.utils.data import Dataset, ConcatDataset
 from diffab.utils.transforms import get_transform
-
-
+from torchvision.transforms import Compose
+# 
 _DATASET_DICT = {}
 
 
@@ -12,9 +12,18 @@ def register_dataset(name):
     return decorator
 
 
+# Original
+# def get_dataset(cfg):
+#     transform = get_transform(cfg['transform']) if 'transform' in cfg else None
+
+#     return _DATASET_DICT[cfg['type']](cfg, transform=transform)
+
+
+# #Melissa
 def get_dataset(cfg):
-    transform = get_transform(cfg.transform) if 'transform' in cfg else None
-    return _DATASET_DICT[cfg.type](cfg, transform=transform)
+    transform = get_transform(cfg['transform']) if 'transform' in cfg else None
+    return transform
+
 
 
 @register_dataset('concat')

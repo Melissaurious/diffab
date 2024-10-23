@@ -106,7 +106,7 @@ def get_checkpoint_path(folder, it=None):
 
 
 def load_config(config_path):
-    with open(config_path, 'r') as f:
+    with open(config_path, 'r', encoding="utf-8") as f:
         config = EasyDict(yaml.safe_load(f))
     config_name = os.path.basename(config_path)[:os.path.basename(config_path).rfind('.')]
     return config, config_name

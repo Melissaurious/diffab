@@ -18,7 +18,7 @@ def preprocess_antibody_structure(task):
     H_id = task.get('heavy_id', 'H')
     L_id = task.get('light_id', 'L')
 
-    parser = PDB.PDBParser(QUIET=True)
+    parser = PDB.PDBParser(QUIET=False)
     model = parser.get_structure(id, pdb_path)[0]
 
     all_chain_ids = [c.id for c in model]
